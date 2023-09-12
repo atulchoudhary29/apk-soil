@@ -1,0 +1,111 @@
+# main.kv
+
+#:import MDDialog kivymd.uix.dialog.MDDialog
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+#:import MDCard kivymd.uix.card.MDCard
+#:import ScreenManager kivy.uix.screenmanager.ScreenManager
+#:import Screen kivy.uix.screenmanager.Screen
+#:import Image kivy.uix.image.Image
+
+<MainScreen>:
+    name: 'main'
+    BoxLayout:
+        orientation: 'vertical'
+        id: main_screen
+        name: 'main'
+        spacing: '10dp'
+        size_hint: 1, 1
+        md_bg_color: 1, 1, 1, 1  # White background
+
+        MDLabel:
+            text: 'My App'
+            halign: 'center'
+            font_style: 'H4'
+            size_hint_y: 0.1
+
+        MDLabel:
+            text: 'Choose what you want to predict'
+            halign: 'center'
+            size_hint_y: 0.1
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: '10dp'
+            size_hint: None, 0.3  # Only specify the height
+            width: '200dp'  # Setting a fixed width for the BoxLayout
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center the layout
+
+            MDRaisedButton:
+                text: 'Cloud'
+                size_hint: 1, None  # Let the button take the full width of its parent (BoxLayout)
+                height: '48dp'  # A standard button height, you can adjust as needed
+                on_release: app.open_popup()
+
+            MDRaisedButton:
+                text: 'Soil'
+                size_hint: 1, None  # Let the button take the full width of its parent (BoxLayout)
+                height: '48dp'  # A standard button height, you can adjust as needed
+                on_release: app.open_popup()
+
+        Widget:
+            # This empty widget will take up the remaining space, pushing the 'Made by Atul' label to the bottom
+            size_hint_y: 0.5
+
+        MDLabel:
+            text: 'Made by Atul'
+            halign: 'center'
+            size_hint_y: 0.1
+
+<PredictionScreen>:
+    name: 'prediction'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '10dp'
+        md_bg_color: 1, 1, 1, 1  # White background
+        padding: [0, 0, 0, 20]  # Add padding to the bottom
+
+        MDLabel:
+            text: 'Prediction'
+            halign: 'center'
+            font_style: 'H4'
+            size_hint_y: 0.1
+
+        # Image Box
+        MDCard:
+            size_hint: None, None
+            size: "300dp", "200dp"
+            elevation: 2
+            pos_hint: {'center_x': 0.5}
+            
+            Image:
+                source: 'cloud.png'
+                size: self.parent.size
+                pos: self.parent.pos
+
+        # Text Box
+        MDCard:
+            size_hint: None, None
+            size: "300dp", "100dp"
+            elevation: 2
+            pos_hint: {'center_x': 0.5}
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                MDLabel:
+                    text: 'Cloud 29%'
+                    halign: 'center'
+                    font_style: 'H5'
+                    size_hint: 1, 1
+
+        # Random Plot Box
+        MDCard:
+            size_hint: None, None
+            size: "300dp", "250dp"  # Increased height from 200dp to 250dp
+            elevation: 2
+            pos_hint: {'center_x': 0.5}
+
+            BoxLayout:
+                orientation: 'vertical'
+                id: plot_box
+
