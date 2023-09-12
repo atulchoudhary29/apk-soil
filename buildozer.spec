@@ -16,7 +16,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 
 # (list) List of inclusions using pattern matching
-#source.include_patterns = assets/*,images/*.png
+#source.include_patterns = *.png
 
 # (list) Source files to exclude (let empty to not exclude anything)
 #source.exclude_exts = spec
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,kivymd,kivy-garden,matplotlib
+requirements = python3=3.11.4,hostpython3=3.11.4,kivy,kivymd,kivy-garden,matplotlib
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
